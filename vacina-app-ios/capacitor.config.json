@@ -1,0 +1,8 @@
+{
+  "appId": "com.alberto.vacinaapp",
+  "appName": "Vacina App",
+  "webDir": "www",
+  "ios": {
+    "contentInset": "automatic"
+  }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Vacina App</title>
+  <link rel="stylesheet" href="style.css" />
+  <!--
+    Bundles UMD dos plugins Capacitor. No app nativo (Xcode), eles falam
+    diretamente com Keychain/UserDefaults e com o Filesystem/Share do iOS.
+    No navegador (para testes), cada plugin tem um fallback web automático
+    (Preferences -> localStorage, Filesystem -> memória, Share -> Web Share API).
+  -->
+  <script src="https://unpkg.com/@capacitor/core@6/dist/capacitor.js"></script>
+  <script src="https://unpkg.com/@capacitor/preferences@6/dist/plugin.js"></script>
+  <script src="https://unpkg.com/@capacitor/filesystem@6/dist/plugin.js"></script>
+  <script src="https://unpkg.com/@capacitor/share@6/dist/plugin.js"></script>
+</head>
+<body>
+  <header class="header">
+    <h1>Comprovante de Vacinação</h1>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="paciente">Paciente</button>
+    <button class="tab-btn" data-tab="doses">Doses <span id="doses-count">(0)</span></button>
+    <button class="tab-btn" data-tab="dados">Dados</button>
+  </nav>
+
+  <main class="content">
+    <!-- ABA PACIENTE -->
+    <section id="tab-paciente" class="tab-panel active">
+      <div class="card">
+        <div class="field">
+          <label for="unidadeSaude">Unidade de saúde</label>
+          <input id="unidadeSaude" type="text" placeholder="Ex: CMS Dom Helder Câmara" />
+        </div>
+        <div class="field">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" placeholder="Nome completo" />
+        </div>
+        <div class="field">
+          <label for="cpf">CPF</label>
+          <input id="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" />
+        </div>
+        <div class="field">
+          <label for="dataNascimento">Data de nascimento (DN)</label>
+          <input id="dataNascimento" type="date" />
+        </div>
+        <button id="btn-salvar-paciente" class="btn-primary">Salvar dados do paciente</button>
+      </div>
+    </section>
+
+    <!-- ABA DOSES -->
+    <section id="tab-doses" class="tab-panel">
+      <div class="card">
+        <h2 class="card-title">Nova dose</h2>
+
+        <div class="field">
+          <label for="vacina">Vacina</label>
+          <select id="vacina">
+            <option>Covid-19</option>
+            <option>Dupla Adulto</option>
+            <option>Tríplice Viral</option>
+            <option>Febre Amarela</option>
+            <option>Hepatite B</option>
+            <option>Outra</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="numeroDose">Número da dose</label>
+          <select id="numeroDose">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="Reforco 1">Reforço 1</option>
+            <option value="Reforco 2">Reforço 2</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="fabricante">Fabricante</label>
+          <input id="fabricante" type="text" placeholder="Ex: AstraZeneca" />
+        </div>
+
+        <div class="field">
+          <label for="lote">Lote</label>
+          <input id="lote" type="text" placeholder="Ex: CTMAV506" />
+        </div>
+
+        <div class="field">
+          <label for="dataAplicacao">Data de aplicação</label>
+          <input id="dataAplicacao" type="date" />
+        </div>
+
+        <div class="field">
+          <label for="vacinador">Vacinador</label>
+          <input id="vacinador" type="text" placeholder="Nome / registro" />
+        </div>
+
+        <button id="btn-add-dose" class="btn-primary">Adicionar dose</button>
+      </div>
+
+      <h2 class="section-title">Doses registradas</h2>
+      <ul id="lista-doses" class="lista-doses"></ul>
+      <p id="doses-vazio" class="vazio">Nenhuma dose registrada ainda.</p>
+    </section>
+    <!-- ABA DADOS -->
+    <section id="tab-dados" class="tab-panel">
+      <div class="card">
+        <h2 class="card-title">Backup dos dados</h2>
+        <p class="descricao">
+          Os dados deste app ficam salvos apenas neste iPhone. Exporte
+          regularmente para não perder o histórico se desinstalar o app ou
+          trocar de aparelho.
+        </p>
+        <button id="btn-exportar" class="btn-primary">Exportar dados</button>
+        <button id="btn-importar" class="btn-secondary">Importar dados</button>
+        <input type="file" id="input-importar" accept="application/json" class="hidden" />
+        <p id="dados-status" class="status hidden"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

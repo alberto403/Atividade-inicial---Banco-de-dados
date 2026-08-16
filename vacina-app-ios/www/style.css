@@ -1,0 +1,180 @@
+:root {
+  --azul: #185FA5;
+  --azul-escuro: #0C447C;
+  --fundo: #F1EFE8;
+  --texto: #1F1F1D;
+  --texto-secundario: #5F5E5A;
+  --borda: #D3D1C7;
+  --branco: #FFFFFF;
+  --vermelho: #993C1D;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+}
+
+.header {
+  background: var(--azul);
+  padding: calc(env(safe-area-inset-top, 0px) + 14px) 20px 16px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.tabs {
+  display: flex;
+  background: var(--branco);
+  border-bottom: 1px solid var(--borda);
+}
+
+.tab-btn {
+  flex: 1;
+  border: none;
+  background: none;
+  padding: 14px 8px;
+  font-size: 15px;
+  color: var(--texto-secundario);
+  border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+  color: var(--azul);
+  font-weight: 600;
+  border-bottom-color: var(--azul);
+}
+
+.content {
+  padding: 16px;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 32px);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.card {
+  background: var(--branco);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 4px 0 10px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  color: var(--texto-secundario);
+  margin-bottom: 4px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background: var(--branco);
+  color: var(--texto);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--azul);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.btn-primary:active {
+  background: var(--azul-escuro);
+}
+
+.lista-doses {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lista-doses li {
+  background: var(--branco);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dose-info-titulo {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 2px;
+}
+
+.dose-info-linha {
+  font-size: 13px;
+  color: var(--texto-secundario);
+  margin: 0;
+}
+
+.btn-remover {
+  border: none;
+  background: none;
+  color: var(--vermelho);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px;
+}
+
+.vazio {
+  text-align: center;
+  color: var(--texto-secundario);
+  font-size: 14px;
+  margin-top: 24px;
+}
+
+.hidden {
+  display: none !important;
+}
